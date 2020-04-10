@@ -5,7 +5,7 @@
 
 using namespace std;
 book::book():book ("none", "none", 0){}
-book::book(char *name, char *author, int pagesCount)
+book::book(char const * const name, char const * const author, int const pagesCount)
 {
  this->name = 0;
     this->author = 0;
@@ -15,39 +15,39 @@ book::book(char *name, char *author, int pagesCount)
   setPagesCount(pagesCount);
 }
 
-book::book(book&p):book(p.name, p.author, p.pagesCount) {}
- void book::print()
+book::book( const book&p):book(p.name, p.author, p.pagesCount) {}
+ void book::print() const
  {
      cout << "Name: " << name << "\nAuthor: " << author << "\nPagesCount: " << pagesCount <<endl;
  }
-void book::setPagesCount(int pagesCount)
+void book::setPagesCount(int const  pagesCount)
 {
     this->pagesCount=pagesCount;
 }
-void book::setName(char *name)
+void book::setName(char const * const name)
 {
    delete [] this->name;
    size_t l=strlen(name);
    this-> name = new char [l+1];
    strcpy(this->name, name);
 }
-void book::setAuthor(char *author)
+void book::setAuthor(char const * const author)
 {
    delete [] this->author;
    size_t len=strlen(author);
    this-> author = new char[len+1];
    strcpy(this->author, author);
 }
- char *book::getAuthor()
+ char *book::getAuthor() const
     {
        return author;
     }
 
-char *book::getName()
+char *book::getName() const
     {
         return name;
     }
-int book::getPagesCount()
+int book::getPagesCount() const
     {
         return pagesCount;
     }
@@ -76,7 +76,7 @@ int book::getPagesCount()
     }
     return *this;
  }
-bool book::operator == (const book& otherbook)
+bool book::operator == (const book& otherbook) const
 {
     if( this->pagesCount != otherbook.pagesCount)
     {
@@ -102,7 +102,7 @@ bool book::operator == (const book& otherbook)
     }
     return true;
 }
-bool book::operator != (const book& otherbook)
+bool book::operator != (const book& otherbook) const
 {
     if( this->pagesCount == otherbook.pagesCount)
     {
@@ -129,7 +129,7 @@ bool book::operator != (const book& otherbook)
     return true;
 }
 
-bool book::operator <= (const book& otherbook)
+bool book::operator <= (const book& otherbook) const
 {
     for (int i=0; i<(strlen(this->name)<strlen(otherbook.name)? strlen(this->name): strlen(otherbook.name)); ++i)
     {
@@ -147,7 +147,7 @@ bool book::operator <= (const book& otherbook)
     }
     return true;
 }
-bool book::operator < (const book& otherbook)
+bool book::operator < (const book& otherbook) const
 {
     for (int i=0; i<(strlen(this->name)<strlen(otherbook.name)? strlen(this->name): strlen(otherbook.name)); ++i)
     {
@@ -170,7 +170,7 @@ bool book::operator < (const book& otherbook)
     }
     return false;
 }
-bool book::operator > (const book& otherbook)
+bool book::operator > (const book& otherbook) const
 {
     for (int i=0; i<(strlen(this->name)<strlen(otherbook.name)? strlen(this->name): strlen(otherbook.name)); ++i)
     {
@@ -192,7 +192,7 @@ bool book::operator > (const book& otherbook)
     }
     return false;
 }
-bool book::operator >= (const book& otherbook)
+bool book::operator >= (const book& otherbook) const
 {
     for (int i=0; i<(strlen(this->name)<strlen(otherbook.name)? strlen(this->name): strlen(otherbook.name)); ++i)
     {
